@@ -1,9 +1,13 @@
 import React from "react";
 
-import { Text, Flex, Grid, Heading, Link } from "@chakra-ui/react";
+import { Text, Flex, Grid, Heading, Link, Button } from "@chakra-ui/react";
+import { useHistory } from "react-router-dom";
+import { MoviesContext } from "../context";
 import { Image } from "./Image";
 
 export const MovieCard = ({ movie }) => {
+  const { setMovie } = React.useContext(MoviesContext);
+  const history = useHistory();
   return (
     <Grid
       templateColumns="200px 1fr"
@@ -20,7 +24,16 @@ export const MovieCard = ({ movie }) => {
       />
       <Flex direction="column">
         <Heading as="h1" color="#ff9800">
-          <Link href={`/details/${movie.id}`}>{movie.title}</Link>
+          <Button
+            onClick={() => {
+              setMovie(movie);
+              console.log(`setMovie(${movie})`);
+
+              history.push(`/details/${movie.id}`);
+            }}
+          >
+            {movie.title}
+          </Button>
         </Heading>
         <Heading as="h2" color="white">
           {movie.status}

@@ -1,8 +1,8 @@
-import React from 'react';
-import { getCharacters } from '../api/characters';
-import { Flex, Button, Text, Spinner, Grid, Box } from '@chakra-ui/react';
+import React from "react";
+import { getCharacters } from "../api/characters";
+import { Flex, Button, Text, Spinner, Grid, Box } from "@chakra-ui/react";
 
-import { MovieCard } from './';
+import { MovieCard } from "./";
 
 export const Home = () => {
   const [page, setPage] = React.useState(1);

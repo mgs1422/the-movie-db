@@ -1,53 +1,62 @@
-import React from 'react';
-import { useParams } from 'react-router-dom';
-import { getDetailMovie } from '../api/detailMovie';
+import React from "react";
+// import { useParams } from "react-router-dom";
 import {
   Flex,
-  Text,
-  Spinner,
+  // Text,
+  // Spinner,
   Box,
   Heading,
   Image,
   Link,
-} from '@chakra-ui/react';
-import { Header } from './';
+  Spinner,
+} from "@chakra-ui/react";
+// import { getDetailMovie } from "../api/detailMovie";
+import { MoviesContext } from "../context";
+import { Header } from "./";
 
 export const DetailMovie = () => {
-  const { id } = useParams();
-  let idNew = id.substr(1);
+  // const { id } = useParams();
+  // let idNew = id.substr(1);
 
-  const [movie, setMovie] = React.useState([]);
-  const [loading, setLoading] = React.useState(false);
-  const [error, setError] = React.useState(null);
+  const { movie } = React.useContext(MoviesContext);
+  console.log("a ver: ", movie);
 
-  React.useEffect(() => {
-    const doFetchMovie = async () => {
-      setLoading(true);
-      setError(null);
-      setMovie([]);
-      try {
-        const results = await getDetailMovie(idNew);
+  // const [movie, setMovie] = React.useState([]);
+  // const [loading, setLoading] = React.useState(false);
+  // const [error, setError] = React.useState(null);
 
-        setLoading(false);
-        setMovie(results);
-        setError(null);
-      } catch (e) {
-        setLoading(false);
-        setMovie([]);
-        setError(e.message);
-      }
-    };
-    doFetchMovie();
-  }, []);
+  // React.useEffect(() => {
+  //   const doFetchMovie = async () => {
+  //     setLoading(true);
+  //     setError(null);
+  //     setMovie([]);
+  //     try {
+  //       const results = await getDetailMovie(idNew);
 
-  if (loading) {
-    return (
-      <Flex align="center" justify="center">
-        <Spinner size="xl" />
-      </Flex>
-    );
-  } else if (error) {
-    return <Text>{error}</Text>;
+  //       setLoading(false);
+  //       setMovie(results);
+  //       setError(null);
+  //     } catch (e) {
+  //       setLoading(false);
+  //       setMovie([]);
+  //       setError(e.message);
+  //     }
+  //   };
+  //   doFetchMovie();
+  // }, [idNew]);
+
+  // if (loading) {
+  //   return (
+  //     <Flex align="center" justify="center">
+  //       <Spinner size="xl" />
+  //     </Flex>
+  //   );
+  // } else if (error) {
+  //   return <Text>{error}</Text>;
+  // }
+
+  if (!movie) {
+    return <Spinner />;
   }
 
   return (
@@ -68,7 +77,7 @@ export const DetailMovie = () => {
           </Heading>
           <p>{movie.overview}</p>
           <Link color="white" href="/home">
-            {' '}
+            {" "}
             Todas Las peliculas
           </Link>
         </Box>
