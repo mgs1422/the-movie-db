@@ -1,10 +1,17 @@
-import React from 'react';
+import React from "react";
 
-import { Text, Flex, Grid, Image, Heading, Link } from '@chakra-ui/react';
+import { Text, Flex, Grid, Heading, Link } from "@chakra-ui/react";
+import { Image } from "./Image";
 
 export const MovieCard = ({ movie }) => {
   return (
-    <Grid templateColumns="200px 1fr" bg="#3c3e44" borderRadius="10px" gap={6}>
+    <Grid
+      templateColumns="200px 1fr"
+      bg="#3c3e44"
+      borderRadius="10px"
+      gap={6}
+      height="20rem"
+    >
       <Image
         borderTopLeftRadius="10px"
         borderBottomLeftRadius="10px "
